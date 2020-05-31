@@ -5,12 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
+  /*<React.StrictMode>
     <App />
-  </React.StrictMode>,
-  /*<BrowserRouter>
+  </React.StrictMode>,*/
+  <Router>
     <App />
-  </BrowserRouter>,*/
+  </Router>,
   document.getElementById('root')
 );
 

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Dashboard from './components/Dashboard'
-
-//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import NavBar from './components/NavBar'
 
 import './App.css';
 
@@ -9,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Dashboard />
+        <NavBar />
       </div>
     )
   }
