@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import axios from 'axios';
 import Header from './Header';
 
 export default class PowerReadings extends Component {
@@ -19,7 +18,6 @@ export default class PowerReadings extends Component {
   }
 
   componentDidMount() {
-    //axios.get('http://localhost:4000/readings/get-serial-readings/' + this.props.match.params.serial)
     axios.get('http://localhost:4000/readings/')
       .then(res => {
         this.setState({
@@ -46,14 +44,13 @@ export default class PowerReadings extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.readings.map((row) => (
+            {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.serial}</TableCell>
-                <TableCell>{row.readingDateTimeUTC}</TableCell>
-                <TableCell>{row.WH}</TableCell>
-                <TableCell>{row.VARH}</TableCell>
-                {/* TODO: calculate usage */}
-                <TableCell align="right">{}</TableCell>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.shipTo}</TableCell>
+                <TableCell>{row.paymentMethod}</TableCell>
+                <TableCell align="right">{row.amount}</TableCell>
               </TableRow>
             ))}
           </TableBody>
