@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, withTheme } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Header from './Header';
 import axios from 'axios';
@@ -40,17 +40,17 @@ export default class PowerChart extends Component {
             left: 24,
           }}
         >
-          <XAxis dataKey="readingDateTimeUTC"  />
-          <YAxis >
+          <XAxis dataKey="readingDateTimeUTC" stroke={this.props.theme.palette.text.secondary} />
+          <YAxis stroke={this.props.theme.palette.text.secondary}>
             <Label
               angle={270}
               position="left"
-              style={{ textAnchor: 'middle'}}
+              style={{ textAnchor: 'middle', fill: this.props.theme.palette.text.primary }}
             >
               Power (WH)
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="WH" dot={false} />
+          <Line type="monotone" dataKey="WH" stroke={this.props.theme.palette.primary.main} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,6 +13,12 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
+const useStyles = makeStyles((theme) => ({
+  seeMore: {
+    marginTop: theme.spacing(3),
+  },
+}));
+
 export default class PowerReadings extends Component {
 
   constructor(props) {
@@ -22,8 +29,8 @@ export default class PowerReadings extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/readings/get-serial-readings/' + this.props.meterNumber)
-    //axios.get('http://localhost:4000/readings/')
+    //axios.get('http://localhost:4000/readings/get-serial-readings/' + this.props.match.params.serial)
+    axios.get('http://localhost:4000/readings/')
       .then(res => {
         this.setState({
           readings: res.data
@@ -61,7 +68,7 @@ export default class PowerReadings extends Component {
             ))}
           </TableBody>
         </Table>
-        <div>
+        <div className={classes.seeMore}>
           <Link color="primary" href="#" onClick={preventDefault}>
             See more
           </Link>
@@ -70,4 +77,3 @@ export default class PowerReadings extends Component {
     );
   }
 }
-

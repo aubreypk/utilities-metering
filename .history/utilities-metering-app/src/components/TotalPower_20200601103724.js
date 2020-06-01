@@ -31,28 +31,28 @@ export default class TotalPower extends Component {
     //axios.get('http://localhost:4000/readings/')
       .then(res => {
         this.setState({
-          readings: res.data,
-          total : this.getTotal(res.data)
+          readings: res.data
         });
+        total = this.getTotal(res.data);
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  getTotal(data)
+  getTotal(readings)
   {
-    let lastReading = data[0].WH;
-    let firstReading = data[data.length - 1].WH;
+    let lastReading = this.readings[0];
+    let firstReading = this.readings[this.readings.length - 1];
 
-    return (lastReading - firstReading) / 1000;
+    return firstReading;
   }
 
   //const classes = useStyles();
   render() {
   return (
     <React.Fragment>
-      <Header>Usage this Period (KW/H)</Header>
+      <Header>Usage this Period</Header>
       <Typography component="p" variant="h4">
       {this.state.total}
       </Typography>

@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default class MetersList extends Component {
 //export default function MetersList() {
-  //classes = useStyles();
+  classes = useStyles();
 
   handleChange = (event) => {
-    this.props.meterNumberCallback(event.target.value);
+    this.props.callback(event.target.value);
   };
 
   render() {

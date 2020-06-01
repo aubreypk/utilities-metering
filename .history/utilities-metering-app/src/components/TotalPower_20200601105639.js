@@ -45,14 +45,14 @@ export default class TotalPower extends Component {
     let lastReading = data[0].WH;
     let firstReading = data[data.length - 1].WH;
 
-    return (lastReading - firstReading) / 1000;
+    return firstReading - lastReading;
   }
 
   //const classes = useStyles();
   render() {
   return (
     <React.Fragment>
-      <Header>Usage this Period (KW/H)</Header>
+      <Header>Usage this Period</Header>
       <Typography component="p" variant="h4">
       {this.state.total}
       </Typography>

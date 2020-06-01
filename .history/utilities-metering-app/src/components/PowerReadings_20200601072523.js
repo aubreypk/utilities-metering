@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import axios from 'axios';
 import Header from './Header';
 
 function preventDefault(event) {
@@ -13,26 +12,6 @@ function preventDefault(event) {
 }
 
 export default class PowerReadings extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      readings: []
-    };
-  }
-
-  componentDidMount() {
-    axios.get('http://localhost:4000/readings/get-serial-readings/' + this.props.meterNumber)
-    //axios.get('http://localhost:4000/readings/')
-      .then(res => {
-        this.setState({
-          readings: res.data
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
 
   render() {
     return (
@@ -61,7 +40,7 @@ export default class PowerReadings extends Component {
             ))}
           </TableBody>
         </Table>
-        <div>
+        <div >
           <Link color="primary" href="#" onClick={preventDefault}>
             See more
           </Link>
@@ -70,4 +49,3 @@ export default class PowerReadings extends Component {
     );
   }
 }
-

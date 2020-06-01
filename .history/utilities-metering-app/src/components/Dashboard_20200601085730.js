@@ -132,9 +132,9 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //const singleHeightPaper = clsx(classes.paper, classes.SingleHeight);
-  const [meterNumber, setMeterNumber] = useState('METER000001'); // get first on list
+  const [meterNumber, setMeterNumber] = useState('');
   const meterNumberCallback = (childData) => {
-    setMeterNumber(childData)
+    this.SetState({meterNumber: childData})
   };
   //const handleMeterNumberChange = () => {
   //  setMeterNumber(meterNumber: serial)
@@ -186,7 +186,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
             {/* Meter Selection */}
-            <MetersList meterNumber={meterNumber} meterNumberCallback = {meterNumberCallback}/>
+            <MetersList meterNumber={meterNumber} callback = {meterNumberCallback}/>
 
           <Grid container spacing={3}>
             {/* Power Chart */}

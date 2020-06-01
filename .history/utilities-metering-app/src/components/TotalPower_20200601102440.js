@@ -3,8 +3,6 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Header from './Header';
-import { withStyles, withTheme } from '@material-ui/core'
-import axios from 'axios';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -20,9 +18,7 @@ export default class TotalPower extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      readings: [],
-      total: 0,
-      curTime : new Date().toLocaleString()
+      readings: []
     };
   }
 
@@ -31,8 +27,7 @@ export default class TotalPower extends Component {
     //axios.get('http://localhost:4000/readings/')
       .then(res => {
         this.setState({
-          readings: res.data,
-          total : this.getTotal(res.data)
+          readings: res.data
         });
       })
       .catch((error) => {
@@ -40,24 +35,16 @@ export default class TotalPower extends Component {
       })
   }
 
-  getTotal(data)
-  {
-    let lastReading = data[0].WH;
-    let firstReading = data[data.length - 1].WH;
-
-    return (lastReading - firstReading) / 1000;
-  }
-
   //const classes = useStyles();
   render() {
   return (
     <React.Fragment>
-      <Header>Usage this Period (KW/H)</Header>
+      <Header>Usage this Period</Header>
       <Typography component="p" variant="h4">
-      {this.state.total}
+        3,024.00
       </Typography>
       <Typography color="textSecondary" >
-        {this.state.curTime}
+        on 1 June, 2020
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

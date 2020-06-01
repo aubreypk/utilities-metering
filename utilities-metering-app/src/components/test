@@ -1,0 +1,13 @@
+<XAxis dataKey="readingDateTimeUTC" stroke={this.props.theme.palette.text.secondary} />
+          <YAxis stroke={this.props.theme.palette.text.secondary}>
+            <Label
+              angle={270}
+              position="left"
+              style={{ textAnchor: 'middle', fill: this.props.theme.palette.text.primary }}
+            >
+              Power (WH)
+            </Label>
+          </YAxis>
+          <Line type="monotone" dataKey="WH" stroke={this.props.theme.palette.primary.main} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>

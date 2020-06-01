@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,31 +15,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default class MetersList extends Component {
-//export default function MetersList() {
-  //classes = useStyles();
+export default function MetersList() {
+  const classes = useStyles();
 
-  handleChange = (event) => {
-    this.props.meterNumberCallback(event.target.value);
+  const handleChange = (event) => {
+    setMeterNumber(event.target.value);
   };
 
-  render() {
   return (
     <div>
-      <FormControl class="formControl">
+      <FormControl className={classes.formControl}>
         <InputLabel id="meter-select-label">Meter Number</InputLabel>
         <Select
           labelId="meter-select-label"
           id="meter-select"
-          value={this.props.meterNumber}
-          onChange={this.handleChange}
+          value={meterNumber}
+          onChange={handleChange}
         >
           {/* TODO: pull meter numbers from db data */}
+          <MenuItem value={""}>All</MenuItem>
           <MenuItem value={"METER000001"}>METER000001</MenuItem>
           <MenuItem value={"METER000002"}>METER000002</MenuItem>
         </Select>
       </FormControl>
     </div>
   );
-  }
 }

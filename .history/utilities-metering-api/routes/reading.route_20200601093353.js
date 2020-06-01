@@ -25,9 +25,7 @@ router.route('/').get((req, res) => {
       } else {
         res.json(data)
       }
-    }).where('serial').
-    equals(req.params.serial).
-    sort({ 'WH': -1 })
+    }).select('serial -_id')
   })
 
 // READ serial list
@@ -38,7 +36,7 @@ router.route('/get-serial-list').get((req, res) => {
     } else {
       res.json(data)
     }
-  }).select('serial -_id') //distinct
+  }).distinct()
 })
 
 // Get Single Reading

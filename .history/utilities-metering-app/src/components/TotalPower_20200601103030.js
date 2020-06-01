@@ -20,9 +20,7 @@ export default class TotalPower extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      readings: [],
-      total: 0,
-      curTime : new Date().toLocaleString()
+      readings: []
     };
   }
 
@@ -31,8 +29,7 @@ export default class TotalPower extends Component {
     //axios.get('http://localhost:4000/readings/')
       .then(res => {
         this.setState({
-          readings: res.data,
-          total : this.getTotal(res.data)
+          readings: res.data
         });
       })
       .catch((error) => {
@@ -40,24 +37,24 @@ export default class TotalPower extends Component {
       })
   }
 
-  getTotal(data)
+  getTotal()
   {
-    let lastReading = data[0].WH;
-    let firstReading = data[data.length - 1].WH;
+    let lastReading = this.readings[0];
+    let firstReading = this.readings[this.readings.length - 1];
 
-    return (lastReading - firstReading) / 1000;
+    return firstReading;
   }
 
   //const classes = useStyles();
   render() {
   return (
     <React.Fragment>
-      <Header>Usage this Period (KW/H)</Header>
+      <Header>Usage this Period</Header>
       <Typography component="p" variant="h4">
-      {this.state.total}
+        3,024.00
       </Typography>
       <Typography color="textSecondary" >
-        {this.state.curTime}
+        on 1 June, 2020
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

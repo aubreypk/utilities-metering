@@ -17,22 +17,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default class MetersList extends Component {
 //export default function MetersList() {
-  //classes = useStyles();
+  classes = useStyles();
 
   handleChange = (event) => {
-    this.props.meterNumberCallback(event.target.value);
+    this.props.callback(event.target.value);
   };
 
   render() {
   return (
     <div>
-      <FormControl class="formControl">
+      <FormControl className={classes.formControl}>
         <InputLabel id="meter-select-label">Meter Number</InputLabel>
         <Select
           labelId="meter-select-label"
           id="meter-select"
           value={this.props.meterNumber}
-          onChange={this.handleChange}
+          onChange={handleChange}
         >
           {/* TODO: pull meter numbers from db data */}
           <MenuItem value={"METER000001"}>METER000001</MenuItem>

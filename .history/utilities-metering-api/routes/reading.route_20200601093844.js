@@ -25,9 +25,7 @@ router.route('/').get((req, res) => {
       } else {
         res.json(data)
       }
-    }).where('serial').
-    equals(req.params.serial).
-    sort({ 'WH': -1 })
+    }).where('serial').equals(serial)
   })
 
 // READ serial list

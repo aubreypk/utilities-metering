@@ -52,7 +52,7 @@ export default class TotalPower extends Component {
   render() {
   return (
     <React.Fragment>
-      <Header>Usage this Period (KW/H)</Header>
+      <Header>Usage this Period KW/H</Header>
       <Typography component="p" variant="h4">
       {this.state.total}
       </Typography>

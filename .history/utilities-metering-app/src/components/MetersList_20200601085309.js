@@ -20,7 +20,7 @@ export default class MetersList extends Component {
   //classes = useStyles();
 
   handleChange = (event) => {
-    this.props.meterNumberCallback(event.target.value);
+    this.props.callback(event.target.value);
   };
 
   render() {

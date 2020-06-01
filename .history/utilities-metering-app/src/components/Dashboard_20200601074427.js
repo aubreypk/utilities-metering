@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -132,13 +132,8 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //const singleHeightPaper = clsx(classes.paper, classes.SingleHeight);
-  const [meterNumber, setMeterNumber] = useState('METER000001'); // get first on list
-  const meterNumberCallback = (childData) => {
-    setMeterNumber(childData)
-  };
-  //const handleMeterNumberChange = () => {
-  //  setMeterNumber(meterNumber: serial)
-  //} 
+
+  state.meterNumber = '';
   //TODO: move fetch data to this level and pass that instead of serial. duplicate fetch in sub-components
 
   return (
@@ -186,25 +181,25 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
             {/* Meter Selection */}
-            <MetersList meterNumber={meterNumber} meterNumberCallback = {meterNumberCallback}/>
+            <MetersList />
 
           <Grid container spacing={3}>
             {/* Power Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <PowerChart meterNumber={meterNumber}/>
+                <PowerChart serial={this.state.meterNumber}/>
               </Paper>
             </Grid>
             {/* Total Power Usage */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <TotalPower meterNumber={meterNumber}/>
+                <TotalPower serial={this.state.meterNumber}/>
               </Paper>
             </Grid>
             {/* List readings */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <PowerReadings meterNumber={meterNumber}/>
+                <PowerReadings serial={this.state.meterNumber}/>
               </Paper>
             </Grid>
           </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,6 +23,7 @@ import PowerChart from './PowerChart';
 import TotalPower from './TotalPower';
 import PowerReadings from './PowerReadings';
 import MetersList from './MetersList';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -121,10 +122,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
+const classes = useStyles();
+  const open = React.useState(true);
+  const setOpen = React.useState(true);
+ const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
@@ -132,15 +133,29 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //const singleHeightPaper = clsx(classes.paper, classes.SingleHeight);
-  const [meterNumber, setMeterNumber] = useState('METER000001'); // get first on list
-  const meterNumberCallback = (childData) => {
-    setMeterNumber(childData)
-  };
-  //const handleMeterNumberChange = () => {
-  //  setMeterNumber(meterNumber: serial)
-  //} 
-  //TODO: move fetch data to this level and pass that instead of serial. duplicate fetch in sub-components
 
+export default class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      readings: []
+    };
+  }
+
+  componentDidMount() {
+    //axios.get('http://localhost:4000/readings/get-serial-readings/' + this.props.match.params.serial)
+    axios.get('http://localhost:4000/readings/')
+      .then(res => {
+        this.setState({
+          readings: res.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  render() {
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -186,25 +201,25 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
             {/* Meter Selection */}
-            <MetersList meterNumber={meterNumber} meterNumberCallback = {meterNumberCallback}/>
+            <MetersList />
 
           <Grid container spacing={3}>
             {/* Power Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <PowerChart meterNumber={meterNumber}/>
+                <PowerChart />
               </Paper>
             </Grid>
             {/* Total Power Usage */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <TotalPower meterNumber={meterNumber}/>
+                <TotalPower />
               </Paper>
             </Grid>
             {/* List readings */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <PowerReadings meterNumber={meterNumber}/>
+                <PowerReadings />
               </Paper>
             </Grid>
           </Grid>
@@ -215,4 +230,5 @@ export default function Dashboard() {
       </main>
     </div>
   );
+  }
 }

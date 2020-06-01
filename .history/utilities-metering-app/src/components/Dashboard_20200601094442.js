@@ -132,7 +132,7 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //const singleHeightPaper = clsx(classes.paper, classes.SingleHeight);
-  const [meterNumber, setMeterNumber] = useState('METER000001'); // get first on list
+  const [meterNumber, setMeterNumber] = useState('');
   const meterNumberCallback = (childData) => {
     setMeterNumber(childData)
   };
